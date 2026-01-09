@@ -16,7 +16,7 @@ FinTech Manager and Solution Architect with expertise in microservices, AWS clou
 
 **Leadership:** Technical Product Management, Project Management, Solution Architecture, Agile, Scrum, Team Mentorship
 
-**Backend:** Java, Spring Boot, Spring Cloud, Node.js, Go, Python, REST APIs
+**Backend:** Java, ColdFusion, Spring Boot, Spring Cloud, Node.js, Go, Python, REST APIs
 
 **Frontend:** React.js, JavaScript, TypeScript, HTMX, Bootstrap
 
@@ -40,7 +40,7 @@ FinTech Manager and Solution Architect with expertise in microservices, AWS clou
 - Led team of 8 engineers building FinTech solutions for claims, invoices, and warranty systems
 - Migrated monolithic systems to microservices on AWS, improving deployment speed by 60%
 - Reduced invoice processing time by 97% (from 30 days to 1 day), saving 200+ hours monthly
-- Developed micro-frontends with React.js, Node.js, Spring Boot, and Go
+- Developed microservices with React.js, Node.js, Spring Boot, and Go
 - Implemented custom MFA solution using Java and Spring Security
 - Integrated European Car Catalog APIs for warranty validation
 - Managed CI/CD pipelines with Kubernetes, Docker, and Kafka
@@ -50,7 +50,7 @@ FinTech Manager and Solution Architect with expertise in microservices, AWS clou
 
 - Lead cross-functional team of 12+ engineers modernizing FinTech systems to cloud-native SaaS
 - Design cloud architecture and migrate services to AWS, reducing infrastructure costs by 40%
-- Optimize CI/CD pipelines using Java, Node.js, React.js, and Go
+- Optimize application pipelines using Java, ColdFusion, Node.js, React.js, and Go
 - Provide IT consulting and strategic technology planning
 
 ### Senior Software Engineer and Drone Developer | SlStudio
