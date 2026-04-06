@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stefan Lazarevic - FinTech Manager</title>
+    <title>Stefan Lazarevic - Technical Product Manager</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -24,9 +24,7 @@
             --gray: #94a3b8;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -35,13 +33,10 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background */
         .bg-animation {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
         }
@@ -49,10 +44,8 @@
         .bg-animation::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background:
                 radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
@@ -65,21 +58,17 @@
             50% { opacity: 0.5; }
         }
 
-        /* Floating Particles */
         .particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
             overflow: hidden;
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 4px; height: 4px;
             background: var(--primary);
             border-radius: 50%;
             opacity: 0.3;
@@ -87,23 +76,15 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.3; }
             90% { opacity: 0.3; }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Navigation */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 0; width: 100%;
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
@@ -116,7 +97,7 @@
 
         nav.scrolled {
             padding: 15px 50px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .logo {
@@ -145,23 +126,15 @@
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--light);
-        }
+        .nav-links a:hover { color: var(--light); }
+        .nav-links a:hover::after { width: 100%; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -278,10 +251,6 @@
             transform: translateY(-2px);
         }
 
-        .cv-download-link i {
-            font-size: 1.1rem;
-        }
-
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -290,10 +259,7 @@
             animation: bounce 2s infinite;
         }
 
-        .scroll-indicator i {
-            font-size: 2rem;
-            color: var(--gray);
-        }
+        .scroll-indicator i { font-size: 2rem; color: var(--gray); }
 
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -301,17 +267,10 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Sections */
         section {
             padding: 100px 50px;
             max-width: 1200px;
@@ -329,16 +288,13 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
-            left: 50%;
+            bottom: -15px; left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 80px; height: 4px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
 
-        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -352,16 +308,8 @@
             transition: all 0.8s ease;
         }
 
-        .about-text.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .about-text p {
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
+        .about-text.animate { opacity: 1; transform: translateX(0); }
+        .about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
 
         .about-stats {
             display: grid;
@@ -372,10 +320,7 @@
             transition: all 0.8s ease 0.3s;
         }
 
-        .about-stats.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .about-stats.animate { opacity: 1; transform: translateX(0); }
 
         .stat-card {
             background: rgba(99, 102, 241, 0.1);
@@ -400,12 +345,8 @@
             background-clip: text;
         }
 
-        .stat-card p {
-            color: var(--gray);
-            margin-top: 10px;
-        }
+        .stat-card p { color: var(--gray); margin-top: 10px; }
 
-        /* Skills Section */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -422,10 +363,7 @@
             transition: all 0.5s ease;
         }
 
-        .skill-category.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .skill-category.animate { opacity: 1; transform: translateY(0); }
 
         .skill-category:hover {
             border-color: var(--primary);
@@ -440,15 +378,9 @@
             gap: 10px;
         }
 
-        .skill-category h3 i {
-            color: var(--primary);
-        }
+        .skill-category h3 i { color: var(--primary); }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
 
         .skill-tag {
             background: rgba(99, 102, 241, 0.15);
@@ -460,24 +392,15 @@
             cursor: default;
         }
 
-        .skill-tag:hover {
-            background: var(--primary);
-            transform: scale(1.05);
-        }
+        .skill-tag:hover { background: var(--primary); transform: scale(1.05); }
 
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            padding-left: 50px;
-        }
+        .timeline { position: relative; padding-left: 50px; }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 20px;
-            top: 0;
-            height: 100%;
-            width: 2px;
+            left: 20px; top: 0;
+            height: 100%; width: 2px;
             background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
 
@@ -489,18 +412,13 @@
             transition: all 0.6s ease;
         }
 
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .timeline-item.animate { opacity: 1; transform: translateX(0); }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -38px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
+            left: -38px; top: 5px;
+            width: 16px; height: 16px;
             background: var(--primary);
             border-radius: 50%;
             border: 3px solid var(--darker);
@@ -520,26 +438,10 @@
             transform: translateX(10px);
         }
 
-        .timeline-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content .company {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content .date {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-        }
+        .timeline-content h3 { font-size: 1.3rem; margin-bottom: 5px; }
+        .timeline-content .company { color: var(--primary); font-weight: 500; margin-bottom: 5px; }
+        .timeline-content .date { color: var(--gray); font-size: 0.9rem; margin-bottom: 15px; }
+        .timeline-content ul { list-style: none; }
 
         .timeline-content ul li {
             color: var(--gray);
@@ -556,7 +458,6 @@
             font-family: 'Fira Code', monospace;
         }
 
-        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -573,10 +474,7 @@
             transition: all 0.5s ease;
         }
 
-        .project-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .project-card.animate { opacity: 1; transform: translateY(0); }
 
         .project-card:hover {
             border-color: var(--primary);
@@ -589,25 +487,10 @@
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
         }
 
-        .project-header i {
-            font-size: 2.5rem;
-            color: var(--primary);
-        }
-
-        .project-body {
-            padding: 25px;
-        }
-
-        .project-body h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .project-body p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
+        .project-header i { font-size: 2.5rem; color: var(--primary); }
+        .project-body { padding: 25px; }
+        .project-body h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .project-body p { color: var(--gray); font-size: 0.95rem; margin-bottom: 20px; }
 
         .project-link {
             display: inline-flex;
@@ -619,9 +502,7 @@
             transition: all 0.3s ease;
         }
 
-        .project-link:hover {
-            gap: 15px;
-        }
+        .project-link:hover { gap: 15px; }
 
         .projects-subtitle {
             font-size: 1.3rem;
@@ -632,13 +513,8 @@
             gap: 12px;
         }
 
-        .projects-subtitle:first-of-type {
-            margin-top: 0;
-        }
-
-        .projects-subtitle i {
-            color: var(--primary);
-        }
+        .projects-subtitle:first-of-type { margin-top: 0; }
+        .projects-subtitle i { color: var(--primary); }
 
         .project-badge {
             display: inline-block;
@@ -653,29 +529,12 @@
             color: white;
         }
 
-        .project-badge.opensource {
-            background: linear-gradient(135deg, var(--accent), #10b981);
-        }
+        .project-badge.opensource { background: linear-gradient(135deg, var(--accent), #10b981); }
+        .project-card.enterprise { border-color: rgba(14, 165, 233, 0.3); }
+        .project-card.enterprise:hover { border-color: var(--primary); box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2); }
+        .project-card.opensource { border-color: rgba(20, 184, 166, 0.3); }
+        .project-card.opensource:hover { border-color: var(--accent); box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2); }
 
-        .project-card.enterprise {
-            border-color: rgba(14, 165, 233, 0.3);
-        }
-
-        .project-card.enterprise:hover {
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
-        }
-
-        .project-card.opensource {
-            border-color: rgba(20, 184, 166, 0.3);
-        }
-
-        .project-card.opensource:hover {
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2);
-        }
-
-        /* Education Section */
         .education-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -693,10 +552,7 @@
             transform: translateY(30px);
         }
 
-        .education-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .education-card.animate { opacity: 1; transform: translateY(0); }
 
         .education-card:hover {
             border-color: var(--primary);
@@ -705,8 +561,7 @@
         }
 
         .education-icon {
-            width: 70px;
-            height: 70px;
+            width: 70px; height: 70px;
             margin: 0 auto 20px;
             background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.2));
             border-radius: 50%;
@@ -715,29 +570,11 @@
             justify-content: center;
         }
 
-        .education-icon i {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
+        .education-icon i { font-size: 1.8rem; color: var(--primary); }
+        .education-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--light); }
+        .education-field { color: var(--primary); font-weight: 500; margin-bottom: 8px; }
+        .education-duration { color: var(--gray); font-size: 0.9rem; }
 
-        .education-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--light);
-        }
-
-        .education-field {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .education-duration {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Seeking Section */
         .seeking-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -758,18 +595,13 @@
             transform: translateY(30px);
         }
 
-        .seeking-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .seeking-card.animate { opacity: 1; transform: translateY(0); }
 
         .seeking-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
@@ -780,8 +612,7 @@
         }
 
         .seeking-icon {
-            width: 80px;
-            height: 80px;
+            width: 80px; height: 80px;
             margin: 0 auto 20px;
             background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.2));
             border-radius: 50%;
@@ -790,22 +621,9 @@
             justify-content: center;
         }
 
-        .seeking-icon i {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        .seeking-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-
-        .seeking-card p {
-            color: var(--gray);
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
+        .seeking-icon i { font-size: 2rem; color: var(--primary); }
+        .seeking-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--light); }
+        .seeking-card p { color: var(--gray); margin-bottom: 20px; line-height: 1.7; }
 
         .seeking-list {
             list-style: none;
@@ -824,46 +642,13 @@
             font-weight: 500;
         }
 
-        .seeking-cta {
-            text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.1));
-            border-radius: 20px;
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease;
-        }
-
-        .seeking-cta.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .seeking-cta p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .seeking-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Contact Section */
         .contact-content {
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .contact-content p {
-            color: var(--gray);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
+        .contact-content p { color: var(--gray); margin-bottom: 40px; font-size: 1.1rem; }
 
         .contact-links {
             display: flex;
@@ -891,11 +676,8 @@
             box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
         }
 
-        .contact-link i {
-            font-size: 1.2rem;
-        }
+        .contact-link i { font-size: 1.2rem; }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 30px;
@@ -903,7 +685,6 @@
             border-top: 1px solid rgba(99, 102, 241, 0.2);
         }
 
-        /* Mobile Menu */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -911,27 +692,14 @@
             cursor: pointer;
         }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--light);
-            transition: all 0.3s ease;
-        }
+        .menu-toggle span { width: 25px; height: 3px; background: var(--light); transition: all 0.3s ease; }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
+            nav { padding: 15px 20px; }
+            .menu-toggle { display: flex; }
             .nav-links {
                 position: fixed;
-                top: 70px;
-                left: 0;
+                top: 70px; left: 0;
                 width: 100%;
                 background: var(--dark);
                 flex-direction: column;
@@ -940,49 +708,17 @@
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
             }
-
-            .nav-links.active {
-                transform: translateX(0);
-            }
-
-            .hero {
-                padding: 100px 20px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .typing-container {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline {
-                padding-left: 30px;
-            }
-
-            .timeline::before {
-                left: 10px;
-            }
-
-            .timeline-item::before {
-                left: -28px;
-                width: 12px;
-                height: 12px;
-            }
+            .nav-links.active { transform: translateX(0); }
+            .hero { padding: 100px 20px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .typing-container { font-size: 1.1rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            section { padding: 60px 20px; }
+            .about-content { grid-template-columns: 1fr; }
+            .timeline { padding-left: 30px; }
+            .timeline::before { left: 10px; }
+            .timeline-item::before { left: -28px; width: 12px; height: 12px; }
+            .seeking-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -990,7 +726,6 @@
     <div class="bg-animation"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="logo">SL</div>
         <ul class="nav-links" id="navLinks">
@@ -1002,13 +737,11 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <h1>Hi, I'm <span>Stefan Lazarevic</span></h1>
@@ -1025,19 +758,19 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I'm a FinTech Manager and Solution Architect with deep expertise in building scalable software systems, microservices architecture, and cloud solutions on AWS.</p>
-                <p>I lead engineering teams to modernize legacy systems into cloud-native SaaS platforms, specializing in FinTech solutions that drive real business impact.</p>
-                <p>My passion lies in solving complex technical challenges while mentoring teams and delivering enterprise-grade solutions that scale.</p>
+                <p>Technical Product Manager with a proven track record of shipping enterprise FinTech and insurance platforms across Europe. I bridge the gap between business goals and engineering execution — leading teams of 8–12 engineers, owning full product roadmaps, and delivering cloud-native solutions on AWS.</p>
+                <p>Equally comfortable presenting to C-suite stakeholders and reviewing pull requests with engineering teams. Delivered measurable results across claims, invoicing, warranty, and SaaS billing systems.</p>
+                <p>Fluent in English and German, with direct experience managing enterprise client relationships across Germany, Switzerland, and Austria. Currently completing PMP certification.</p>
             </div>
             <div class="about-stats">
                 <div class="stat-card">
-                    <h3>10+</h3>
-                    <p>Years Enterprise Experience</p>
+                    <h3>6+</h3>
+                    <p>Years FinTech Delivery</p>
                 </div>
                 <div class="stat-card">
                     <h3>50+</h3>
@@ -1055,10 +788,24 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills -->
     <section id="skills">
         <h2 class="section-title">Skills & Expertise</h2>
         <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-chart-line"></i> Product</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Product Management</span>
+                    <span class="skill-tag">Technical Program Management</span>
+                    <span class="skill-tag">Roadmapping</span>
+                    <span class="skill-tag">Backlog Prioritization</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">Agile</span>
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">Solution Architecture</span>
+                    <span class="skill-tag">Team Mentorship</span>
+                </div>
+            </div>
             <div class="skill-category">
                 <h3><i class="fas fa-server"></i> Backend Development</h3>
                 <div class="skill-tags">
@@ -1091,9 +838,10 @@
                     <span class="skill-tag">Kubernetes</span>
                     <span class="skill-tag">Docker</span>
                     <span class="skill-tag">GitLab CI/CD</span>
-                    <span class="skill-tag">Jenkins</span>
                     <span class="skill-tag">Kafka</span>
                     <span class="skill-tag">Grafana</span>
+                    <span class="skill-tag">OpenShift</span>
+                    <span class="skill-tag">Prometheus</span>
                 </div>
             </div>
             <div class="skill-category">
@@ -1106,135 +854,117 @@
                     <span class="skill-tag">Batch Processing</span>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-users-cog"></i> Leadership</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Technical Management</span>
-                    <span class="skill-tag">Project Management</span>
-                    <span class="skill-tag">Solution Architecture</span>
-                    <span class="skill-tag">Agile</span>
-                    <span class="skill-tag">Scrum</span>
-                    <span class="skill-tag">Team Mentorship</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-robot"></i> Emerging Tech</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">AI</span>
-                    <span class="skill-tag">Prompt Engineering</span>
-                    <span class="skill-tag">Drone Programming</span>
-                    <span class="skill-tag">DJI SDK</span>
-                    <span class="skill-tag">Tello SDK</span>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience -->
     <section id="experience">
         <h2 class="section-title">Experience</h2>
         <div class="timeline">
+
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Technical Product Management</h3>
-                    <p class="company">Zurich Insurance / Real Garant</p>
-                    <p class="date">Nov 2019 - Present | Zurich, Switzerland</p>
+                    <h3>Technical Product Manager</h3>
+                    <p class="company">Optima Apps · Full-time</p>
+                    <p class="date">Nov 2019 – Present · Vienna, Austria · Remote</p>
                     <ul>
-                        <li>Led team of 8 engineers building FinTech solutions for claims, invoices, and warranty systems</li>
-                        <li>Migrated monolithic systems to microservices on AWS, improving deployment speed by 60%</li>
-                        <li>Reduced invoice processing time by 97% (from 30 days to 1 day), saving 200+ hours monthly</li>
-                        <li>Developed microservices with React.js, Node.js, Spring Boot, and Go</li>
-                        <li>Implemented custom MFA solution using Java and Spring Security</li>
+                        <li>Product and delivery lead for a FinTech SaaS platform serving enterprise clients including Zurich Insurance and Real Garant across 5+ European markets</li>
+                        <li>Owned product roadmap, sprint planning, and backlog prioritization for a cross-functional team of 12+ engineers</li>
+                        <li>Drove AWS cloud migration reducing infrastructure costs by 40%</li>
+                        <li>Defined and shipped microservices architecture replacing legacy monolith, improving deployment frequency by 60%</li>
+                        <li>Managed CI/CD pipelines across Kubernetes, Docker, Kafka, and GitLab CI/CD</li>
+                        <li>Provided strategic technology roadmap and IT consulting to C-level stakeholders</li>
                     </ul>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>FinTech Manager & Solution Architect</h3>
-                    <p class="company">Optima Apps</p>
-                    <p class="date">Nov 2019 - Present | Belgrade, Serbia</p>
+                    <h3>Technical Product Manager</h3>
+                    <p class="company">Zurich Insurance · Contract</p>
+                    <p class="date">Apr 2023 – Present · Zurich, Switzerland · Remote</p>
                     <ul>
-                        <li>Lead cross-functional team of 12+ engineers modernizing FinTech systems to cloud-native SaaS</li>
-                        <li>Design cloud architecture and migrate services to AWS, reducing infrastructure costs by 40%</li>
-                        <li>Optimize application pipelines using Java, ColdFusion, Node.js, React.js, and Go</li>
-                        <li>Provide IT consulting and strategic technology planning</li>
+                        <li>Led product delivery for Zurich's internal FinTech platform covering claims, invoices, accruals, and bookings across multiple European markets</li>
+                        <li>Reduced invoice processing time by 97% — from 30 days to 1 day — saving 200+ operational hours per month</li>
+                        <li>Shipped custom MFA solution using Java and Spring Security, bringing platform into enterprise compliance</li>
+                        <li>Managed cross-functional stakeholder alignment across finance, operations, legal, and engineering teams</li>
+                        <li>Oversaw CI/CD modernization using Kubernetes, Docker, Kafka, and OpenShift</li>
                     </ul>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Senior Software Engineer & Drone Developer</h3>
-                    <p class="company">SlStudio</p>
-                    <p class="date">Dec 2018 - Jun 2020 | Belgrade, Serbia</p>
+                    <h3>Technical Product Manager</h3>
+                    <p class="company">Real Garant by Zurich · Contract</p>
+                    <p class="date">Nov 2019 – Apr 2023 · Neuhausen, Germany · Remote</p>
                     <ul>
-                        <li>Built automation systems using Python, DJI SDK, and Tello SDK</li>
-                        <li>Managed drone assembly, programming, and calibration</li>
+                        <li>Managed end-to-end product delivery for Real Garant's automotive warranty platform used by dealership networks across Germany and Central Europe</li>
+                        <li>Led a team of 8 engineers through full product lifecycle from discovery through release</li>
+                        <li>Shipped warranty validation workflows integrating European Car Catalog APIs (KBA, ETX) for real-time automated eligibility checks, replacing a fully manual process</li>
+                        <li>Translated dealer and operations requirements into engineering specs, ran sprint planning and stakeholder reviews</li>
+                        <li>Built and shipped microservices using React.js, Node.js, Spring Boot, and Go</li>
                     </ul>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Startup Founder & Engineer</h3>
+                    <h3>Founder & Product Lead</h3>
                     <p class="company">PowerBattery</p>
-                    <p class="date">Sep 2016 - Sep 2019 | Shenzhen, China</p>
+                    <p class="date">2016 – 2019 · Shenzhen, China</p>
                     <ul>
-                        <li>Founded eco-friendly powerbank company using recycled batteries</li>
-                        <li>Designed battery management systems to reduce e-waste</li>
-                        <li>Managed product development from prototype to manufacturing</li>
+                        <li>Founded hardware startup building eco-friendly powerbanks from recycled batteries, managing full product lifecycle from concept through manufacturing</li>
+                        <li>Owned vendor relationships, supply chain, product specifications, and go-to-market execution end-to-end</li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Education Section -->
+    <!-- Education -->
     <section id="education">
         <h2 class="section-title">Education</h2>
         <div class="education-grid">
             <div class="education-card">
                 <div class="education-icon">
-                    <i class="fas fa-university"></i>
+                    <i class="fas fa-building-columns"></i>
                 </div>
                 <h3>Metropolitan University Belgrade</h3>
-                <p class="education-field">Information Technology</p>
-                <p class="education-duration">Coursework completed (2 years)</p>
+                <p class="education-field">Information Technology Project Management</p>
             </div>
             <div class="education-card">
                 <div class="education-icon">
                     <i class="fas fa-microchip"></i>
                 </div>
-                <h3>University of Nis</h3>
-                <p class="education-field">Software Engineering</p>
-                <p class="education-duration">Faculty of Electronic Engineering | Coursework completed (2 years)</p>
+                <h3>University of Niš, Faculty of Electronic Engineering</h3>
+                <p class="education-field">Computer Software Engineering</p>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects -->
     <section id="projects">
         <h2 class="section-title">Projects</h2>
 
         <h3 class="projects-subtitle"><i class="fas fa-building"></i> Enterprise</h3>
         <div class="projects-grid">
             <div class="project-card enterprise">
-                <div class="project-header">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
+                <div class="project-header"><i class="fas fa-shield-halved"></i></div>
                 <div class="project-body">
                     <span class="project-badge">Enterprise</span>
                     <h3>Zurich Insurance Platform</h3>
-                    <p>Global insurance and financial services platform serving millions of customers worldwide.</p>
+                    <p>Global insurance and financial services platform. Led product delivery for claims, invoicing, and compliance systems across European markets.</p>
                     <a href="https://zurich.com" target="_blank" class="project-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             <div class="project-card enterprise">
-                <div class="project-header">
-                    <i class="fas fa-car"></i>
-                </div>
+                <div class="project-header"><i class="fas fa-car"></i></div>
                 <div class="project-body">
                     <span class="project-badge">Enterprise</span>
-                    <h3>Real Garant</h3>
-                    <p>Automotive warranty and insurance management platform for the European market.</p>
+                    <h3>Real Garant by Zurich</h3>
+                    <p>Automotive warranty platform for dealership networks across Germany and Central Europe. Shipped warranty validation with European Car Catalog API integration.</p>
                     <a href="https://realgarant.com" target="_blank" class="project-link">Visit Site <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1243,9 +973,7 @@
         <h3 class="projects-subtitle"><i class="fab fa-github"></i> Open Source</h3>
         <div class="projects-grid">
             <div class="project-card opensource">
-                <div class="project-header">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                </div>
+                <div class="project-header"><i class="fas fa-file-invoice-dollar"></i></div>
                 <div class="project-body">
                     <span class="project-badge opensource">Open Source</span>
                     <h3>Factura-Lazare</h3>
@@ -1254,9 +982,7 @@
                 </div>
             </div>
             <div class="project-card opensource">
-                <div class="project-header">
-                    <i class="fab fa-bitcoin"></i>
-                </div>
+                <div class="project-header"><i class="fas fa-coins"></i></div>
                 <div class="project-body">
                     <span class="project-badge opensource">Open Source</span>
                     <h3>LazareBTCTrack</h3>
@@ -1265,9 +991,7 @@
                 </div>
             </div>
             <div class="project-card opensource">
-                <div class="project-header">
-                    <i class="fas fa-chart-line"></i>
-                </div>
+                <div class="project-header"><i class="fas fa-chart-line"></i></div>
                 <div class="project-body">
                     <span class="project-badge opensource">Open Source</span>
                     <h3>TracktLazare</h3>
@@ -1275,41 +999,26 @@
                     <a href="https://stefanlaza.github.io/TracktLazare/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="project-card opensource">
-                <div class="project-header">
-                    <i class="fas fa-drone"></i>
-                </div>
-                <div class="project-body">
-                    <span class="project-badge opensource">Open Source</span>
-                    <h3>PythonTelloDroneAI</h3>
-                    <p>Drone automation platform using Python and Tello SDK for autonomous flight operations.</p>
-                    <a href="https://github.com/stefanlaza" target="_blank" class="project-link">View GitHub <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Currently Seeking Section -->
+    <!-- Seeking -->
     <section id="seeking">
         <h2 class="section-title">Currently Seeking</h2>
         <div class="seeking-grid">
             <div class="seeking-card">
-                <div class="seeking-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <h3>In-House Manager</h3>
-                <p>Seeking a leadership role where I can drive strategy, mentor teams, and deliver enterprise-grade solutions. PMP certified approach to project delivery and organizational excellence.</p>
+                <div class="seeking-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Senior TPM / Product Manager</h3>
+                <p>Seeking a US-based remote or hybrid TPM or PM role where I can drive product strategy, lead engineering teams, and deliver enterprise-grade solutions. PMP certification in progress.</p>
                 <ul class="seeking-list">
-                    <li>Technical Team Leadership</li>
-                    <li>Project Management (PMP)</li>
-                    <li>Solution Architecture</li>
-                    <li>Digital Transformation</li>
+                    <li>Product Roadmapping</li>
+                    <li>Agile Delivery</li>
+                    <li>Cloud Architecture</li>
+                    <li>Stakeholder Management</li>
                 </ul>
             </div>
             <div class="seeking-card">
-                <div class="seeking-icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
+                <div class="seeking-icon"><i class="fas fa-handshake"></i></div>
                 <h3>New Projects & Clients</h3>
                 <p>Open to consulting engagements, freelance projects, and long-term partnerships. Specializing in FinTech, SaaS, and cloud-native solutions.</p>
                 <ul class="seeking-list">
@@ -1322,7 +1031,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact">
         <h2 class="section-title">Get in Touch</h2>
         <div class="contact-content">
@@ -1342,20 +1051,18 @@
                 <a href="Stefan_Lazarevic_CV.pdf" download class="cv-download-link">
                     <i class="fas fa-file-pdf"></i> Download CV (PDF)
                 </a>
-                <a href="Stefan_Lazarevic_CV.doc" download class="cv-download-link">
+                <a href="Stefan_Lazarevic_CV.docx" download class="cv-download-link">
                     <i class="fas fa-file-word"></i> Download CV (Word)
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Stefan Lazarevic. Built with passion and code.</p>
+        <p>&copy; 2026 Stefan Lazarevic. Built with passion and code.</p>
     </footer>
 
     <script>
-        // Create floating particles
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -1366,16 +1073,12 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Typing effect
-        const texts = ['FinTech Manager', 'Solution Architect', 'Full-Stack Developer', 'Cloud Expert', 'Team Leader'];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        const texts = ['Technical Product Manager', 'FinTech Platform Lead', 'AWS Cloud Delivery', 'TPM · PM · Strategy'];
+        let textIndex = 0, charIndex = 0, isDeleting = false;
         const typingElement = document.getElementById('typingText');
 
         function type() {
             const currentText = texts[textIndex];
-
             if (isDeleting) {
                 typingElement.textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
@@ -1383,87 +1086,45 @@
                 typingElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
             }
-
             if (!isDeleting && charIndex === currentText.length) {
                 setTimeout(() => isDeleting = true, 2000);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 textIndex = (textIndex + 1) % texts.length;
             }
-
-            const speed = isDeleting ? 50 : 100;
-            setTimeout(type, speed);
+            setTimeout(type, isDeleting ? 50 : 100);
         }
-
         type();
 
-        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu on link click
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
         });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('animate');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observe elements
-        document.querySelectorAll('.about-text, .about-stats, .skill-category, .timeline-item, .project-card, .education-card, .seeking-card').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.about-text, .about-stats, .skill-category, .timeline-item, .project-card, .education-card, .seeking-card').forEach(el => observer.observe(el));
 
-        // Staggered animations for skill categories and project cards
-        document.querySelectorAll('.skill-category').forEach((el, i) => {
-            el.style.transitionDelay = (i * 0.1) + 's';
-        });
+        document.querySelectorAll('.skill-category').forEach((el, i) => el.style.transitionDelay = (i * 0.1) + 's');
+        document.querySelectorAll('.project-card').forEach((el, i) => el.style.transitionDelay = (i * 0.1) + 's');
+        document.querySelectorAll('.timeline-item').forEach((el, i) => el.style.transitionDelay = (i * 0.15) + 's');
 
-        document.querySelectorAll('.project-card').forEach((el, i) => {
-            el.style.transitionDelay = (i * 0.1) + 's';
-        });
-
-        document.querySelectorAll('.timeline-item').forEach((el, i) => {
-            el.style.transitionDelay = (i * 0.15) + 's';
-        });
-
-        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
