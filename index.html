@@ -1,1132 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stefan Lazarevic - Technical Product Manager</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0284c7;
-            --secondary: #06b6d4;
-            --accent: #14b8a6;
-            --dark: #0f172a;
-            --darker: #020617;
-            --light: #f8fafc;
-            --gray: #94a3b8;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            overflow-x: hidden;
-        }
-
-        .bg-animation {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.1) 0%, transparent 30%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .particles {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background: rgba(15, 23, 42, 0.8);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 15px 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--gray);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0; height: 2px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover { color: var(--light); }
-        .nav-links a:hover::after { width: 100%; }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 50px;
-            position: relative;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero-content h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .typing-container {
-            font-size: 1.5rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-            height: 40px;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .typing-text {
-            border-right: 3px solid var(--primary);
-            padding-right: 5px;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { border-color: var(--primary); }
-            50% { border-color: transparent; }
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .cv-downloads {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .cv-download-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            padding: 10px 20px;
-            border-radius: 30px;
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-        }
-
-        .cv-download-link:hover {
-            color: var(--light);
-            background: rgba(14, 165, 233, 0.2);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator i { font-size: 2rem; color: var(--gray); }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            padding: 100px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px; left: 50%;
-            transform: translateX(-50%);
-            width: 80px; height: 4px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease;
-        }
-
-        .about-text.animate { opacity: 1; transform: translateX(0); }
-        .about-text p { color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease 0.3s;
-        }
-
-        .about-stats.animate { opacity: 1; transform: translateX(0); }
-
-        .stat-card {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .stat-card h3 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-card p { color: var(--gray); margin-top: 10px; }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease;
-        }
-
-        .skill-category.animate { opacity: 1; transform: translateY(0); }
-
-        .skill-category:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
-        }
-
-        .skill-category h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-category h3 i { color: var(--primary); }
-
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-
-        .skill-tag {
-            background: rgba(99, 102, 241, 0.15);
-            color: var(--light);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .skill-tag:hover { background: var(--primary); transform: scale(1.05); }
-
-        .timeline { position: relative; padding-left: 50px; }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px; top: 0;
-            height: 100%; width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.animate { opacity: 1; transform: translateX(0); }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -38px; top: 5px;
-            width: 16px; height: 16px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 3px solid var(--darker);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-
-        .timeline-content {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        .timeline-content h3 { font-size: 1.3rem; margin-bottom: 5px; }
-        .timeline-content .company { color: var(--primary); font-weight: 500; margin-bottom: 5px; }
-        .timeline-content .date { color: var(--gray); font-size: 0.9rem; margin-bottom: 15px; }
-        .timeline-content ul { list-style: none; }
-
-        .timeline-content ul li {
-            color: var(--gray);
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .timeline-content ul li::before {
-            content: '>';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-family: 'Fira Code', monospace;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease;
-        }
-
-        .project-card.animate { opacity: 1; transform: translateY(0); }
-
-        .project-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .project-header {
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
-        }
-
-        .project-header i { font-size: 2.5rem; color: var(--primary); }
-        .project-body { padding: 25px; }
-        .project-body h3 { font-size: 1.2rem; margin-bottom: 10px; }
-        .project-body p { color: var(--gray); font-size: 0.95rem; margin-bottom: 20px; }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover { gap: 15px; }
-
-        .projects-subtitle {
-            font-size: 1.3rem;
-            color: var(--light);
-            margin: 40px 0 25px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .projects-subtitle:first-of-type { margin-top: 0; }
-        .projects-subtitle i { color: var(--primary); }
-
-        .project-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .project-badge.opensource { background: linear-gradient(135deg, var(--accent), #10b981); }
-        .project-card.enterprise { border-color: rgba(14, 165, 233, 0.3); }
-        .project-card.enterprise:hover { border-color: var(--primary); box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2); }
-        .project-card.opensource { border-color: rgba(20, 184, 166, 0.3); }
-        .project-card.opensource:hover { border-color: var(--accent); box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2); }
-
-        .education-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .education-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            border-radius: 20px;
-            padding: 35px;
-            text-align: center;
-            transition: all 0.5s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .education-card.animate { opacity: 1; transform: translateY(0); }
-
-        .education-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
-        }
-
-        .education-icon {
-            width: 70px; height: 70px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.2));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .education-icon i { font-size: 1.8rem; color: var(--primary); }
-        .education-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--light); }
-        .education-field { color: var(--primary); font-weight: 500; margin-bottom: 8px; }
-        .education-duration { color: var(--gray); font-size: 0.9rem; }
-
-        .seeking-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .seeking-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 2px solid rgba(14, 165, 233, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .seeking-card.animate { opacity: 1; transform: translateY(0); }
-
-        .seeking-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .seeking-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
-        }
-
-        .seeking-icon {
-            width: 80px; height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.2));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .seeking-icon i { font-size: 2rem; color: var(--primary); }
-        .seeking-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--light); }
-        .seeking-card p { color: var(--gray); margin-bottom: 20px; line-height: 1.7; }
-
-        .seeking-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .seeking-list li {
-            background: rgba(14, 165, 233, 0.15);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-content p { color: var(--gray); margin-bottom: 40px; font-size: 1.1rem; }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 50px;
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .contact-link i { font-size: 1.2rem; }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--gray);
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span { width: 25px; height: 3px; background: var(--light); transition: all 0.3s ease; }
-
-        @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
-            .menu-toggle { display: flex; }
-            .nav-links {
-                position: fixed;
-                top: 70px; left: 0;
-                width: 100%;
-                background: var(--dark);
-                flex-direction: column;
-                padding: 20px;
-                gap: 20px;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            .nav-links.active { transform: translateX(0); }
-            .hero { padding: 100px 20px; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .typing-container { font-size: 1.1rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            section { padding: 60px 20px; }
-            .about-content { grid-template-columns: 1fr; }
-            .timeline { padding-left: 30px; }
-            .timeline::before { left: 10px; }
-            .timeline-item::before { left: -28px; width: 12px; height: 12px; }
-            .seeking-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stefan Lazarevic — Technical Product Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07090d;
+  --surface:#0d1018;
+  --card:#111520;
+  --border:rgba(255,255,255,0.07);
+  --text:#e8eaf0;
+  --muted:#6b7280;
+  --accent:#c8a96e;
+  --accent2:#e8c98e;
+  --blue:#4a9eff;
+  --green:#34d399;
+  --dark:#020408;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* NOISE TEXTURE */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(7,9,13,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:0.02em}
+.nav-links{display:flex;gap:2.5rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.7rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.3s}
+.nav-links a:hover{color:var(--accent)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden}
+#particles-hero{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero>*:not(#particles-hero){position:relative;z-index:1}
+.particle{position:absolute;border-radius:50%;opacity:0;animation:float-up 14s infinite;pointer-events:none}
+@keyframes float-up{0%{transform:translateY(0) translateX(0);opacity:0}3%{opacity:0.7}50%{transform:translateY(-450px) translateX(20px);opacity:0.5}95%{opacity:0.2}100%{transform:translateY(-900px) translateX(-15px);opacity:0}}
+
+.hero-eyebrow{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;animation:fadeInUp 0.8s ease forwards}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--accent);opacity:0.4}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:600;text-align:center;line-height:0.95;letter-spacing:-0.02em;margin-bottom:2rem;animation:fadeInUp 0.8s ease 0.15s forwards;opacity:0}
+.hero h1 .line1{display:block;color:var(--text)}
+.hero h1 .line2{display:block;color:var(--accent);font-style:italic}
+.hero h1 .line3{display:block;color:var(--text);font-size:0.55em;letter-spacing:0.1em;font-style:normal;font-weight:400;margin-top:0.3em;color:var(--muted)}
+
+.hero-metrics{display:flex;gap:0px;margin:2.5rem 0;border:1px solid var(--border);animation:fadeInUp 0.8s ease 0.3s forwards;opacity:0}
+.hero-metric{padding:1.5rem 2.5rem;text-align:center;border-right:1px solid var(--border)}
+.hero-metric:last-child{border-right:none}
+.hero-metric-val{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1;display:block}
+.hero-metric-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-top:0.3rem;display:block}
+
+.hero-cta{display:flex;gap:1rem;animation:fadeInUp 0.8s ease 0.45s forwards;opacity:0}
+.btn-gold{padding:0.85rem 2.5rem;background:var(--accent);color:var(--dark);border:none;font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;cursor:pointer}
+.btn-gold:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-ghost{padding:0.85rem 2.5rem;background:transparent;color:var(--accent);border:1px solid rgba(200,169,110,0.4);font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(200,169,110,0.08);transform:translateY(-2px)}
+
+/* SECTION */
+.section-wrap{padding:7rem 3rem;max-width:1100px;margin:0 auto}
+.alt-wrap{background:var(--surface)}
+.alt-inner{max-width:1100px;margin:0 auto;padding:7rem 3rem}
+.section-eyebrow{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.section-eyebrow::before{content:'';width:20px;height:1px;background:var(--accent);opacity:0.5}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:600;color:var(--text);letter-spacing:-0.02em;line-height:1.0;margin-bottom:1rem}
+.section-title em{font-style:italic;color:var(--accent)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.about-text p{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:1.2rem}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+.about-tag{font-size:0.65rem;padding:0.3rem 0.8rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.05em;transition:all 0.2s}
+.about-tag:hover{border-color:var(--accent);color:var(--accent)}
+.about-stats{display:flex;flex-direction:column;gap:0}
+.about-stat{padding:1.5rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.about-stat:first-child{border-top:1px solid var(--border)}
+.about-stat-val{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--accent)}
+.about-stat-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);text-align:right;max-width:160px;line-height:1.5}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-item{padding:2.5rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:200px 1fr;gap:3rem;transition:background 0.3s}
+.exp-item:first-child{border-top:1px solid var(--border)}
+.exp-item:hover{background:rgba(200,169,110,0.02)}
+.exp-meta{padding-top:0.2rem}
+.exp-date{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem}
+.exp-company{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.2rem}
+.exp-location{font-size:0.68rem;color:var(--muted)}
+.exp-content h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:0.8rem}
+.exp-content ul{list-style:none;padding:0}
+.exp-content ul li{font-size:0.82rem;color:var(--muted);line-height:1.8;padding:0.3rem 0 0.3rem 1.2rem;position:relative;border-bottom:1px solid rgba(255,255,255,0.03)}
+.exp-content ul li:last-child{border-bottom:none}
+.exp-content ul li::before{content:'›';position:absolute;left:0;color:var(--accent);font-size:1rem}
+
+/* METRICS */
+.metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:4rem 0}
+.metric-box{background:var(--bg);padding:2.5rem 1.5rem;text-align:center;transition:background 0.3s}
+.metric-box:hover{background:var(--card)}
+.metric-box-val{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:0.5rem}
+.metric-box-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border)}
+.skill-block{background:var(--surface);padding:2rem;transition:background 0.3s}
+.skill-block:hover{background:var(--card)}
+.skill-block h3{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-tag{font-size:0.68rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.03em;transition:all 0.2s}
+.skill-tag:hover{border-color:var(--accent);color:var(--accent)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border)}
+.project-card{background:var(--surface);padding:2.5rem;transition:background 0.3s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transition:transform 0.4s ease;transform-origin:left}
+.project-card:hover{background:var(--card)}
+.project-card:hover::before{transform:scaleX(1)}
+.project-badge{font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.7rem;border:1px solid var(--border);color:var(--muted);margin-bottom:1rem;display:inline-block}
+.project-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:0.6rem}
+.project-card p{font-size:0.78rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem}
+.project-link{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:gap 0.2s}
+.project-link:hover{gap:0.8rem}
+
+/* EDUCATION */
+.edu-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);margin-top:3rem}
+.edu-card{background:var(--surface);padding:2rem;transition:background 0.3s}
+.edu-card:hover{background:var(--card)}
+.edu-school{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem}
+.edu-field{font-size:0.78rem;color:var(--accent)}
+
+/* CONTACT */
+.contact-wrap{text-align:center;padding:7rem 3rem;position:relative;overflow:hidden}
+.contact-wrap::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(200,169,110,0.04) 0%,transparent 70%);pointer-events:none}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+.contact-link{display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 2rem;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.3s}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.contact-link svg{width:14px;height:14px}
+
+footer{text-align:center;padding:2rem;font-size:0.65rem;color:var(--muted);border-top:1px solid var(--border);letter-spacing:0.08em}
+
+/* SCROLL LINE */
+.scroll-line{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;z-index:200;transition:width 0.1s linear}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}.nav-links{gap:1.2rem}.nav-links a{font-size:0.62rem}
+  .hero{padding:6rem 1.5rem 4rem}.hero-metrics{flex-direction:column;gap:0}
+  .hero-metric{border-right:none;border-bottom:1px solid var(--border)}
+  .section-wrap{padding:4rem 1.5rem}.alt-inner{padding:4rem 1.5rem}
+  .about-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr;gap:1rem}
+  .metrics-strip{grid-template-columns:repeat(2,1fr)}
+}
+</style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="particles" id="particles"></div>
 
-    <nav id="navbar">
-        <div class="logo">SL</div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#seeking">Opportunities</a></li>
-            <li><a href="#contact">Contact</a></li>
+<div class="scroll-line" id="scrollLine"></div>
+
+<nav>
+  <span class="nav-logo">SL</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div id="particles-hero"></div>
+  <div class="hero-eyebrow">Technical Product Manager</div>
+  <h1>
+    <span class="line1">Stefan</span>
+    <span class="line2">Lazarevic</span>
+    <span class="line3">FinTech · SaaS · AI Platforms · Queens, New York</span>
+  </h1>
+  <div class="hero-metrics">
+    <div class="hero-metric"><span class="hero-metric-val">97%</span><span class="hero-metric-label">Invoice processing<br>time reduction</span></div>
+    <div class="hero-metric"><span class="hero-metric-val">40%</span><span class="hero-metric-label">Infrastructure<br>cost reduction</span></div>
+    <div class="hero-metric"><span class="hero-metric-val">62%</span><span class="hero-metric-label">Support ticket<br>reduction</span></div>
+    <div class="hero-metric"><span class="hero-metric-val">6+</span><span class="hero-metric-label">Years FinTech<br>delivery</span></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-gold">Get in Touch</a>
+    <a href="Stefan_Lazarevic_CV.pdf" download class="btn-ghost">Download CV</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="alt-wrap">
+<div class="alt-inner" id="about">
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <div class="section-eyebrow">About</div>
+      <h2 class="section-title">Engineer turned<br><em>Product Manager.</em></h2>
+      <p style="margin-top:1.5rem">I started as a software engineer. That means when I sit with an engineering team I'm <strong>not translating — I'm collaborating as a peer.</strong> I understand tradeoffs at a systems level, not just conceptually.</p>
+      <p>Over 6+ years as a TPM I've led teams of 8–12 engineers across cloud-native AWS environments, owned full product roadmaps end to end, and delivered measurable results at enterprise scale for clients including <strong>Zurich Insurance</strong> and <strong>Real Garant by Zurich.</strong></p>
+      <p>I've also built and shipped an AI chatbot and multilingual automation platform on ServiceNow serving 20,000 users monthly across 5 European languages — reducing support tickets by 62%.</p>
+      <p>Fluent in English and German. <strong>Green Card holder</strong> — authorized to work in the US, no sponsorship required. Based in Queens, New York since 2024. Currently completing PMP certification, expected Q3 2026.</p>
+      <div class="about-tags">
+        <span class="about-tag">AWS</span><span class="about-tag">Kafka</span><span class="about-tag">Kubernetes</span><span class="about-tag">Java</span><span class="about-tag">Node.js</span><span class="about-tag">React.js</span><span class="about-tag">Spring Boot</span><span class="about-tag">Go</span><span class="about-tag">PostgreSQL</span><span class="about-tag">ServiceNow</span><span class="about-tag">GitLab CI/CD</span><span class="about-tag">OpenShift</span>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat"><span class="about-stat-val">$18K</span><span class="about-stat-label">Monthly AWS savings</span></div>
+      <div class="about-stat"><span class="about-stat-val">200+</span><span class="about-stat-label">Operational hours saved per month</span></div>
+      <div class="about-stat"><span class="about-stat-val">20K</span><span class="about-stat-label">Monthly AI platform users</span></div>
+      <div class="about-stat"><span class="about-stat-val">12+</span><span class="about-stat-label">Engineers led cross-functionally</span></div>
+      <div class="about-stat"><span class="about-stat-val">5</span><span class="about-stat-label">European markets served</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="section-eyebrow reveal">Experience</div>
+  <h2 class="section-title reveal">Career<br><em>Timeline.</em></h2>
+
+  <div class="exp-list" style="margin-top:3rem">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">Nov 2019 — Present</div>
+        <div class="exp-company">Optima Apps</div>
+        <div class="exp-location">Vienna, Austria · Remote</div>
+      </div>
+      <div class="exp-content">
+        <h3>Technical Product Manager</h3>
+        <ul>
+          <li>Product and delivery lead for a FinTech SaaS platform serving Zurich Insurance and Real Garant across 5+ European markets</li>
+          <li>Owned product roadmap, sprint planning, and backlog prioritization for a cross-functional team of 12+ engineers</li>
+          <li>Drove AWS cloud migration reducing infrastructure costs by 40%</li>
+          <li>Defined and shipped microservices architecture replacing legacy monolith, improving deployment frequency by 60%</li>
+          <li>Managed CI/CD pipelines across Kubernetes, Docker, Kafka, and GitLab CI/CD</li>
+          <li>Provided strategic technology roadmap and IT consulting to C-level stakeholders</li>
         </ul>
-        <div class="menu-toggle" id="menuToggle">
-            <span></span><span></span><span></span>
-        </div>
-    </nav>
+      </div>
+    </div>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm <span>Stefan Lazarevic</span></h1>
-            <div class="typing-container">
-                <span class="typing-text" id="typingText"></span>
-            </div>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                <a href="#projects" class="btn btn-outline">View Projects</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">Apr 2023 — Present</div>
+        <div class="exp-company">Zurich Insurance</div>
+        <div class="exp-location">Zurich, Switzerland · Remote</div>
+      </div>
+      <div class="exp-content">
+        <h3>Technical Product Manager</h3>
+        <ul>
+          <li>Led product delivery for Zurich's internal FinTech platform covering claims, invoices, accruals, and bookings across European markets</li>
+          <li>Reduced invoice processing time by 97% — from 30 days to 1 day — saving 200+ operational hours per month</li>
+          <li>Shipped custom MFA solution using Java and Spring Security, bringing platform into enterprise compliance</li>
+          <li>Managed cross-functional stakeholder alignment across finance, operations, legal, and engineering teams</li>
+          <li>Oversaw CI/CD modernization using Kubernetes, Docker, Kafka, and OpenShift</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- About -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Technical Product Manager with a proven track record of shipping enterprise FinTech and insurance platforms across Europe. I bridge the gap between business goals and engineering execution — leading teams of 8–12 engineers, owning full product roadmaps, and delivering cloud-native solutions on AWS.</p>
-                <p>Equally comfortable presenting to C-suite stakeholders and reviewing pull requests with engineering teams. Delivered measurable results across claims, invoicing, warranty, and SaaS billing systems.</p>
-                <p>Fluent in English and German, with direct experience managing enterprise client relationships across Germany, Switzerland, and Austria. Currently completing PMP certification.</p>
-            </div>
-            <div class="about-stats">
-                <div class="stat-card">
-                    <h3>6+</h3>
-                    <p>Years FinTech Delivery</p>
-                </div>
-                <div class="stat-card">
-                    <h3>50+</h3>
-                    <p>Projects Delivered</p>
-                </div>
-                <div class="stat-card">
-                    <h3>97%</h3>
-                    <p>Process Optimization</p>
-                </div>
-                <div class="stat-card">
-                    <h3>4</h3>
-                    <p>Languages Spoken</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">Nov 2019 — Apr 2023</div>
+        <div class="exp-company">Real Garant by Zurich</div>
+        <div class="exp-location">Neuhausen, Germany · Remote</div>
+      </div>
+      <div class="exp-content">
+        <h3>Technical Product Manager</h3>
+        <ul>
+          <li>Managed end-to-end product delivery for Real Garant's automotive warranty platform used by dealership networks across Germany and Central Europe</li>
+          <li>Led a team of 8 engineers through full product lifecycle from discovery through release</li>
+          <li>Shipped warranty validation workflows integrating European Car Catalog APIs (KBA, ETX) for real-time automated eligibility checks</li>
+          <li>Built and shipped microservices using React.js, Node.js, Spring Boot, and Go</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Skills -->
-    <section id="skills">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3><i class="fas fa-chart-line"></i> Product</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Product Management</span>
-                    <span class="skill-tag">Technical Program Management</span>
-                    <span class="skill-tag">Roadmapping</span>
-                    <span class="skill-tag">Backlog Prioritization</span>
-                    <span class="skill-tag">Stakeholder Management</span>
-                    <span class="skill-tag">Agile</span>
-                    <span class="skill-tag">Scrum</span>
-                    <span class="skill-tag">Solution Architecture</span>
-                    <span class="skill-tag">Team Mentorship</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-server"></i> Backend Development</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">ColdFusion</span>
-                    <span class="skill-tag">Spring Boot</span>
-                    <span class="skill-tag">Spring Cloud</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Go</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">REST APIs</span>
-                    <span class="skill-tag">Microservices</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-laptop-code"></i> Frontend Development</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">React.js</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">HTMX</span>
-                    <span class="skill-tag">Bootstrap</span>
-                    <span class="skill-tag">Micro-Frontends</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">Kubernetes</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">GitLab CI/CD</span>
-                    <span class="skill-tag">Kafka</span>
-                    <span class="skill-tag">Grafana</span>
-                    <span class="skill-tag">OpenShift</span>
-                    <span class="skill-tag">Prometheus</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-database"></i> Databases</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">IBM DB2</span>
-                    <span class="skill-tag">ETL</span>
-                    <span class="skill-tag">Batch Processing</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">2016 — 2019</div>
+        <div class="exp-company">PowerBattery</div>
+        <div class="exp-location">Shenzhen, China</div>
+      </div>
+      <div class="exp-content">
+        <h3>Founder & Product Lead</h3>
+        <ul>
+          <li>Founded hardware startup building eco-friendly powerbanks from recycled batteries, managing full product lifecycle from concept through manufacturing</li>
+          <li>Owned vendor relationships, supply chain, product specifications, and go-to-market execution end-to-end</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Experience -->
-    <section id="experience">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
+  </div>
+</div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Technical Product Manager</h3>
-                    <p class="company">Optima Apps · Full-time</p>
-                    <p class="date">Nov 2019 – Present · Vienna, Austria · Remote</p>
-                    <ul>
-                        <li>Product and delivery lead for a FinTech SaaS platform serving enterprise clients including Zurich Insurance and Real Garant across 5+ European markets</li>
-                        <li>Owned product roadmap, sprint planning, and backlog prioritization for a cross-functional team of 12+ engineers</li>
-                        <li>Drove AWS cloud migration reducing infrastructure costs by 40%</li>
-                        <li>Defined and shipped microservices architecture replacing legacy monolith, improving deployment frequency by 60%</li>
-                        <li>Managed CI/CD pipelines across Kubernetes, Docker, Kafka, and GitLab CI/CD</li>
-                        <li>Provided strategic technology roadmap and IT consulting to C-level stakeholders</li>
-                    </ul>
-                </div>
-            </div>
+<!-- METRICS STRIP -->
+<div class="alt-wrap">
+<div style="max-width:1100px;margin:0 auto;padding:0 3rem">
+  <div class="metrics-strip reveal">
+    <div class="metric-box"><div class="metric-box-val">97%</div><div class="metric-box-label">Invoice time reduction</div></div>
+    <div class="metric-box"><div class="metric-box-val">62%</div><div class="metric-box-label">AI ticket reduction</div></div>
+    <div class="metric-box"><div class="metric-box-val">40%</div><div class="metric-box-label">Infrastructure savings</div></div>
+    <div class="metric-box"><div class="metric-box-val">60%</div><div class="metric-box-label">Faster deployments</div></div>
+  </div>
+</div>
+</div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Technical Product Manager</h3>
-                    <p class="company">Zurich Insurance · Contract</p>
-                    <p class="date">Apr 2023 – Present · Zurich, Switzerland · Remote</p>
-                    <ul>
-                        <li>Led product delivery for Zurich's internal FinTech platform covering claims, invoices, accruals, and bookings across multiple European markets</li>
-                        <li>Reduced invoice processing time by 97% — from 30 days to 1 day — saving 200+ operational hours per month</li>
-                        <li>Shipped custom MFA solution using Java and Spring Security, bringing platform into enterprise compliance</li>
-                        <li>Managed cross-functional stakeholder alignment across finance, operations, legal, and engineering teams</li>
-                        <li>Oversaw CI/CD modernization using Kubernetes, Docker, Kafka, and OpenShift</li>
-                    </ul>
-                </div>
-            </div>
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="section-eyebrow reveal">Skills</div>
+  <h2 class="section-title reveal">Technical<br><em>Expertise.</em></h2>
+  <div class="skills-grid reveal" style="margin-top:3rem">
+    <div class="skill-block">
+      <h3>Product</h3>
+      <div class="skill-tags"><span class="skill-tag">Product Management</span><span class="skill-tag">TPM</span><span class="skill-tag">Roadmapping</span><span class="skill-tag">Backlog Prioritization</span><span class="skill-tag">Stakeholder Management</span><span class="skill-tag">Agile</span><span class="skill-tag">Scrum</span><span class="skill-tag">Solution Architecture</span></div>
+    </div>
+    <div class="skill-block">
+      <h3>Backend</h3>
+      <div class="skill-tags"><span class="skill-tag">Java</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Node.js</span><span class="skill-tag">Go</span><span class="skill-tag">Python</span><span class="skill-tag">REST APIs</span><span class="skill-tag">Microservices</span><span class="skill-tag">ColdFusion</span></div>
+    </div>
+    <div class="skill-block">
+      <h3>Cloud & DevOps</h3>
+      <div class="skill-tags"><span class="skill-tag">AWS</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Docker</span><span class="skill-tag">Kafka</span><span class="skill-tag">GitLab CI/CD</span><span class="skill-tag">Grafana</span><span class="skill-tag">OpenShift</span><span class="skill-tag">Prometheus</span></div>
+    </div>
+    <div class="skill-block">
+      <h3>AI & Automation</h3>
+      <div class="skill-tags"><span class="skill-tag">ServiceNow</span><span class="skill-tag">AI Chatbot</span><span class="skill-tag">NLP</span><span class="skill-tag">Multilingual Automation</span><span class="skill-tag">Prompt Engineering</span></div>
+    </div>
+    <div class="skill-block">
+      <h3>Frontend</h3>
+      <div class="skill-tags"><span class="skill-tag">React.js</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span><span class="skill-tag">HTMX</span><span class="skill-tag">Bootstrap</span></div>
+    </div>
+    <div class="skill-block">
+      <h3>Databases</h3>
+      <div class="skill-tags"><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">IBM DB2</span><span class="skill-tag">ETL</span><span class="skill-tag">Batch Processing</span></div>
+    </div>
+  </div>
+</div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Technical Product Manager</h3>
-                    <p class="company">Real Garant by Zurich · Contract</p>
-                    <p class="date">Nov 2019 – Apr 2023 · Neuhausen, Germany · Remote</p>
-                    <ul>
-                        <li>Managed end-to-end product delivery for Real Garant's automotive warranty platform used by dealership networks across Germany and Central Europe</li>
-                        <li>Led a team of 8 engineers through full product lifecycle from discovery through release</li>
-                        <li>Shipped warranty validation workflows integrating European Car Catalog APIs (KBA, ETX) for real-time automated eligibility checks, replacing a fully manual process</li>
-                        <li>Translated dealer and operations requirements into engineering specs, ran sprint planning and stakeholder reviews</li>
-                        <li>Built and shipped microservices using React.js, Node.js, Spring Boot, and Go</li>
-                    </ul>
-                </div>
-            </div>
+<!-- PROJECTS -->
+<div class="alt-wrap">
+<div class="alt-inner" id="projects">
+  <div class="section-eyebrow reveal">Projects</div>
+  <h2 class="section-title reveal">Selected<br><em>Work.</em></h2>
+  <div class="projects-grid reveal" style="margin-top:3rem">
+    <div class="project-card">
+      <span class="project-badge">Enterprise</span>
+      <h3>Zurich Insurance Platform</h3>
+      <p>Global insurance and financial services platform. Led product delivery for claims, invoicing, and compliance systems across European markets.</p>
+      <a href="https://zurich.com" target="_blank" class="project-link">Visit Site →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-badge">Enterprise</span>
+      <h3>Real Garant by Zurich</h3>
+      <p>Automotive warranty platform for dealership networks across Germany and Central Europe. Shipped warranty validation with European Car Catalog API integration.</p>
+      <a href="https://realgarant.com" target="_blank" class="project-link">Visit Site →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-badge">Open Source</span>
+      <h3>Factura-Lazare</h3>
+      <p>Professional invoice management with PDF export, client management, and financial tracking.</p>
+      <a href="https://stefanlaza.github.io/Factura-Lazare/" target="_blank" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-badge">Open Source</span>
+      <h3>LazareBTCTrack</h3>
+      <p>Bitcoin wallet tracker with real-time analytics, portfolio monitoring, and multi-currency support.</p>
+      <a href="https://stefanlaza.github.io/LazareBTCTrack/" target="_blank" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-badge">Open Source</span>
+      <h3>TracktLazare</h3>
+      <p>Expense tracker with budgeting, data visualization, and multi-format export capabilities.</p>
+      <a href="https://stefanlaza.github.io/TracktLazare/" target="_blank" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <span class="project-badge">Portfolio</span>
+      <h3>Technical Delivery Portfolio</h3>
+      <p>Interactive portfolio showcasing cloud architecture diagrams, ADRs, delivery metrics, risk registers, and team topology.</p>
+      <a href="https://stefanlaza.github.io/Technical-Product-Manager/" target="_blank" class="project-link">View Portfolio →</a>
+    </div>
+  </div>
+</div>
+</div>
 
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Founder & Product Lead</h3>
-                    <p class="company">PowerBattery</p>
-                    <p class="date">2016 – 2019 · Shenzhen, China</p>
-                    <ul>
-                        <li>Founded hardware startup building eco-friendly powerbanks from recycled batteries, managing full product lifecycle from concept through manufacturing</li>
-                        <li>Owned vendor relationships, supply chain, product specifications, and go-to-market execution end-to-end</li>
-                    </ul>
-                </div>
-            </div>
+<!-- EDUCATION -->
+<div class="section-wrap">
+  <div class="section-eyebrow reveal">Education</div>
+  <h2 class="section-title reveal">Academic<br><em>Background.</em></h2>
+  <div class="edu-row reveal">
+    <div class="edu-card">
+      <div class="edu-school">Metropolitan University Belgrade</div>
+      <div class="edu-field">Information Technology Project Management</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-school">University of Niš — Faculty of Electronic Engineering</div>
+      <div class="edu-field">Computer Software Engineering</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-school">Project Management Institute</div>
+      <div class="edu-field">PMP® Certification — In Progress, Q3 2026</div>
+    </div>
+  </div>
+</div>
 
-        </div>
-    </section>
+<!-- CONTACT -->
+<div class="alt-wrap">
+<div class="contact-wrap" id="contact">
+  <div class="section-eyebrow reveal" style="justify-content:center">Contact</div>
+  <h2 class="section-title reveal" style="font-size:clamp(2.5rem,6vw,5rem)">Let's<br><em>talk.</em></h2>
+  <p class="reveal" style="color:var(--muted);font-size:0.82rem;max-width:480px;margin:1rem auto 0;line-height:1.9">Senior TPM available for US remote or hybrid roles. Green Card holder, no sponsorship required. Based in Queens, New York.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:stefan.lazarevic87@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+    <a href="https://linkedin.com/in/stefanlazarevic" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/stefanlaza" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="Stefan_Lazarevic_CV.pdf" download class="contact-link" style="border-color:rgba(200,169,110,0.3);color:var(--accent)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Download CV
+    </a>
+  </div>
+</div>
+</div>
 
-    <!-- Education -->
-    <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="education-grid">
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-building-columns"></i>
-                </div>
-                <h3>Metropolitan University Belgrade</h3>
-                <p class="education-field">Information Technology Project Management</p>
-            </div>
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-microchip"></i>
-                </div>
-                <h3>University of Niš, Faculty of Electronic Engineering</h3>
-                <p class="education-field">Computer Software Engineering</p>
-            </div>
-        </div>
-    </section>
+<footer>
+  <p>Stefan Lazarevic &mdash; Technical Product Manager &mdash; Queens, New York &mdash; 2026</p>
+</footer>
 
-    <!-- Projects -->
-    <section id="projects">
-        <h2 class="section-title">Projects</h2>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  // Scroll reveal
+  const els=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:0.06});
+  els.forEach(el=>obs.observe(el));
 
-        <h3 class="projects-subtitle"><i class="fas fa-building"></i> Enterprise</h3>
-        <div class="projects-grid">
-            <div class="project-card enterprise">
-                <div class="project-header"><i class="fas fa-shield-halved"></i></div>
-                <div class="project-body">
-                    <span class="project-badge">Enterprise</span>
-                    <h3>Zurich Insurance Platform</h3>
-                    <p>Global insurance and financial services platform. Led product delivery for claims, invoicing, and compliance systems across European markets.</p>
-                    <a href="https://zurich.com" target="_blank" class="project-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="project-card enterprise">
-                <div class="project-header"><i class="fas fa-car"></i></div>
-                <div class="project-body">
-                    <span class="project-badge">Enterprise</span>
-                    <h3>Real Garant by Zurich</h3>
-                    <p>Automotive warranty platform for dealership networks across Germany and Central Europe. Shipped warranty validation with European Car Catalog API integration.</p>
-                    <a href="https://realgarant.com" target="_blank" class="project-link">Visit Site <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
+  // Scroll progress line
+  window.addEventListener('scroll',()=>{
+    const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+    document.getElementById('scrollLine').style.width=pct+'%';
+  });
 
-        <h3 class="projects-subtitle"><i class="fab fa-github"></i> Open Source</h3>
-        <div class="projects-grid">
-            <div class="project-card opensource">
-                <div class="project-header"><i class="fas fa-file-invoice-dollar"></i></div>
-                <div class="project-body">
-                    <span class="project-badge opensource">Open Source</span>
-                    <h3>Factura-Lazare</h3>
-                    <p>Professional invoice management with PDF export, client management, and financial tracking.</p>
-                    <a href="https://stefanlaza.github.io/Factura-Lazare/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="project-card opensource">
-                <div class="project-header"><i class="fas fa-coins"></i></div>
-                <div class="project-body">
-                    <span class="project-badge opensource">Open Source</span>
-                    <h3>LazareBTCTrack</h3>
-                    <p>Bitcoin wallet tracker with real-time analytics, portfolio monitoring, and multi-currency support.</p>
-                    <a href="https://stefanlaza.github.io/LazareBTCTrack/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="project-card opensource">
-                <div class="project-header"><i class="fas fa-chart-line"></i></div>
-                <div class="project-body">
-                    <span class="project-badge opensource">Open Source</span>
-                    <h3>TracktLazare</h3>
-                    <p>Expense tracker with budgeting, data visualization, and multi-format export capabilities.</p>
-                    <a href="https://stefanlaza.github.io/TracktLazare/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seeking -->
-    <section id="seeking">
-        <h2 class="section-title">Currently Seeking</h2>
-        <div class="seeking-grid">
-            <div class="seeking-card">
-                <div class="seeking-icon"><i class="fas fa-briefcase"></i></div>
-                <h3>Senior TPM / Product Manager</h3>
-                <p>Seeking a US-based remote or hybrid TPM or PM role where I can drive product strategy, lead engineering teams, and deliver enterprise-grade solutions. PMP certification in progress.</p>
-                <ul class="seeking-list">
-                    <li>Product Roadmapping</li>
-                    <li>Agile Delivery</li>
-                    <li>Cloud Architecture</li>
-                    <li>Stakeholder Management</li>
-                </ul>
-            </div>
-            <div class="seeking-card">
-                <div class="seeking-icon"><i class="fas fa-handshake"></i></div>
-                <h3>New Projects & Clients</h3>
-                <p>Open to consulting engagements, freelance projects, and long-term partnerships. Specializing in FinTech, SaaS, and cloud-native solutions.</p>
-                <ul class="seeking-list">
-                    <li>IT Consulting</li>
-                    <li>SaaS Development</li>
-                    <li>Cloud Architecture</li>
-                    <li>System Modernization</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="contact-content">
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-            <div class="contact-links">
-                <a href="mailto:stefan.lazarevic87@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-                <a href="https://linkedin.com/in/stefanlazarevic" target="_blank" class="contact-link">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/stefanlaza" target="_blank" class="contact-link">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-            <div class="cv-downloads">
-                <a href="Stefan_Lazarevic_CV.pdf" download class="cv-download-link">
-                    <i class="fas fa-file-pdf"></i> Download CV (PDF)
-                </a>
-                <a href="Stefan_Lazarevic_CV.docx" download class="cv-download-link">
-                    <i class="fas fa-file-word"></i> Download CV (Word)
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Stefan Lazarevic. Built with passion and code.</p>
-    </footer>
-
-    <script>
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        const texts = ['Technical Product Manager', 'FinTech Platform Lead', 'AWS Cloud Delivery', 'TPM · PM · Strategy'];
-        let textIndex = 0, charIndex = 0, isDeleting = false;
-        const typingElement = document.getElementById('typingText');
-
-        function type() {
-            const currentText = texts[textIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            if (!isDeleting && charIndex === currentText.length) {
-                setTimeout(() => isDeleting = true, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-            }
-            setTimeout(type, isDeleting ? 50 : 100);
-        }
-        type();
-
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => navLinks.classList.remove('active'));
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('animate');
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.about-text, .about-stats, .skill-category, .timeline-item, .project-card, .education-card, .seeking-card').forEach(el => observer.observe(el));
-
-        document.querySelectorAll('.skill-category').forEach((el, i) => el.style.transitionDelay = (i * 0.1) + 's');
-        document.querySelectorAll('.project-card').forEach((el, i) => el.style.transitionDelay = (i * 0.1) + 's');
-        document.querySelectorAll('.timeline-item').forEach((el, i) => el.style.transitionDelay = (i * 0.15) + 's');
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-    </script>
+  // Particles
+  const container=document.getElementById('particles-hero');
+  if(container){
+    for(let i=0;i<100;i++){
+      const p=document.createElement('div');
+      p.className='particle';
+      const size=Math.random()*2.5+1;
+      const colors=['#d4a853','#c8a96e','#e8c98e','#a07840'];
+      p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;bottom:${Math.random()*8}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*14}s;animation-duration:${Math.random()*6+10}s`;
+      container.appendChild(p);
+    }
+  }
+});
+</script>
 </body>
 </html>
